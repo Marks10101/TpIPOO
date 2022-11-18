@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Empleados;
 import modelo.Proyectos;
 
@@ -51,12 +52,10 @@ public class Menu {
                         + "\n*2. Proyectos"
                         + "\n*3. Salir    "
                         + "\n*=============================*"
-                        +  "\n*   Ingrese Opcion"
-                       
+                        + "\n*   Ingrese Opcion"
                 );
                 opcion = Integer.parseInt(menu);
 
-                
                 switch (opcion) {
                     case 1:
                         empleados();
@@ -66,10 +65,10 @@ public class Menu {
                         break;
                     case 3:
                         JOptionPane.showMessageDialog(null, "Saliendo del Programa");
-                        
+
                         break;
                     default:
-                        System.out.println("Opcion Incorrecta");
+                        JOptionPane.showMessageDialog(null, "Opcion Incorrecta");
                         break;
 
                 }
@@ -79,102 +78,103 @@ public class Menu {
         }
     }
 
-
     public static void empleados() {
+        int opcion;
+        try {
 
-        int opcion = 0;
+            do {
 
-        while (opcion != 8) {
+                String menu = JOptionPane.showInputDialog(
+                        "*==============================*"
+                        + "\n*=== Municipalidad de La Quiaca ====*"
+                        + "\n*==============================*"
+                        + "\n*== Menu opciones de Empleados ===*"
+                        + "\n*==============================*"
+                        + "\n*1. Agregar un Empleado "
+                        + "\n*2. Eliminar un Empleado "
+                        + "\n*3. Modificar un Empleado   "
+                        + "\n*4. Listar Empleados  "
+                        + "\n*5. Empleado de Mayor Edad "
+                        + "\n*6. Empleados con sueldo Basico "
+                        + "\n*7. Buscar Empleado  "
+                        + "\n*8. Volver    "
+                        + "\n*=============================*"
+                        + "\n*   Ingrese Opcion"
+                );
+                opcion = Integer.parseInt(menu);
 
-            System.out.println("____________________________________");
-            System.out.println("+    Municipalidad de La Quiaca    +");
-            System.out.println("+==================================+");
-            System.out.println("+    Menu opciones de Empleados    +");
-            System.out.println("+==================================+");
-            System.out.println("+   1. Agregar un Empleado         +");
-            System.out.println("+   2. Eliminar un Empleado        +");
-            System.out.println("+   3. Modificar un Empleado       +");
-            System.out.println("+   4. Listar Empleados            +");
-            System.out.println("+   5. Empleado de Mayor Edad      +");
-            System.out.println("+   6. Empleados con sueldo Basico +");
-            System.out.println("+   7. Buscar Empleado             +");
-            System.out.println("+   8. Volver                      +");
-            System.out.println("+   Ingrese Opcion                 +");
-            System.out.println("+==================================+");
+                while (opcion != 8) {
 
-            try {
-                opcion = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                scanner.nextLine();
-                System.out.println("Debe ingresar un numero");
-            }
-            switch (opcion) {
-                case 1:
+                    switch (opcion) {
+                        case 1:
                     try {
-                        empleado.crearEmpleado();
-                    } catch (Exception ex) {
-                        System.out.println("Error " + ex);
-                    }
-                    break;
-                case 2:
+                            empleado.crearEmpleado();
+                        } catch (Exception ex) {
+                            System.out.println("Error " + ex);
+                        }
+                        break;
+                        case 2:
                     try {
-                        empleado.eliminarEmpleado();
-                    } catch (Exception ex) {
-                        System.out.println("Error " + ex);
-                    }
-                    break;
-                case 3:
+                            empleado.eliminarEmpleado();
+                        } catch (Exception ex) {
+                            System.out.println("Error " + ex);
+                        }
+                        break;
+                        case 3:
                     try {
-                        empleado.ModificarEmpleado();
-                    } catch (Exception e) {
-                        System.out.println("Error " + e);
-                    }
+                            empleado.ModificarEmpleado();
+                        } catch (Exception e) {
+                            System.out.println("Error " + e);
+                        }
 
-                    break;
-                case 4:
+                        break;
+                        case 4:
                     try {
-                        empleado.mostrarEmpleados();
-                    } catch (Exception e) {
-                        System.out.println("Error " + e);
-                    }
+                            empleado.mostrarEmpleados();
+                        } catch (Exception e) {
+                            System.out.println("Error " + e);
+                        }
 
-                    break;
-                case 5:
+                        break;
+                        case 5:
                     try {
-                        empleado.mayorEdad();
-                    } catch (Exception e) {
-                        System.out.println("Error " + e);
-                    }
+                            empleado.mayorEdad();
+                        } catch (Exception e) {
+                            System.out.println("Error " + e);
+                        }
 
-                    break;
-                case 6:
-                    System.out.println("Ingrese un sueldo basico:");
-                    float suelBasico = scanner.nextFloat();
+                        break;
+                        case 6:
+                            System.out.println("Ingrese un sueldo basico:");
+                            float suelBasico = scanner.nextFloat();
+                            try {
+                                empleado.sueldoBasico(suelBasico);
+                            } catch (Exception e) {
+                                System.out.println("Error " + e);
+                            }
+
+                            break;
+                        case 7:
                     try {
-                        empleado.sueldoBasico(suelBasico);
-                    } catch (Exception e) {
-                        System.out.println("Error " + e);
-                    }
+                            empleado.BuscarEmpleado();
+                        } catch (Exception ex) {
+                            System.out.println("Error " + ex);
+                        }
+                        break;
+                        case 8:
+                            System.out.println("Volviendo al Menu Admistracion");
+                            break;
+                        default:
+                            System.out.println("Opcion Incorrecta");
+                            break;
 
-                    break;
-                case 7:
-                    try {
-                        empleado.BuscarEmpleado();
-                    } catch (Exception ex) {
-                        System.out.println("Error " + ex);
                     }
-                    break;
-                case 8:
-                    System.out.println("Volviendo al Menu Admistracion");
-                    break;
-                default:
-                    System.out.println("Opcion Incorrecta");
-                    break;
-
-            }
+                }
+            } while (opcion != 8);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un numero");
         }
     }
-
     public static void proyectos() {
         int opcion = 0;
 
