@@ -36,44 +36,49 @@ public class Menu {
     }
 
     public static void menuPrincipal() {
-        int opcion = 0;
+        int opcion;
+        try {
 
-        while (opcion != 3) {
-            System.out.println("________________________________");
-            System.out.println("+   Municipalidad de La Quiaca +");
-            System.out.println("+==============================+");
-            System.out.println("+==== Menu de Admistración ====+");
-            System.out.println("+==============================+");
-            System.out.println("+   1. Empleados               +");
-            System.out.println("+   2. Proyectos               +");
-            System.out.println("+   3. Salir                   +");
-            System.out.println("+   Ingrese Opcion             +");
-            System.out.println("+==============================+");
+            do {
 
-            try {
-                opcion = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                scanner.nextLine();
-                System.out.println("Debe ingresar un numero");
-            }
-            switch (opcion) {
-                case 1:
-                    empleados();
-                    break;
-                case 2:
-                    proyectos();
-                    break;
-                case 3:
-                    System.out.println("Saliendo del Programa");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Opcion Incorrecta");
-                    break;
+                String menu = JOptionPane.showInputDialog(
+                        "*==============================*"
+                        + "\n*=== Municipalidad de La Quiaca ====*"
+                        + "\n*==============================*"
+                        + "\n*===== Menu de Admistración ======*"
+                        + "\n*==============================*"
+                        + "\n*1. Empleados"
+                        + "\n*2. Proyectos"
+                        + "\n*3. Salir    "
+                        + "\n*=============================*"
+                        +  "\n*   Ingrese Opcion"
+                       
+                );
+                opcion = Integer.parseInt(menu);
 
-            }
+                
+                switch (opcion) {
+                    case 1:
+                        empleados();
+                        break;
+                    case 2:
+                        proyectos();
+                        break;
+                    case 3:
+                        JOptionPane.showMessageDialog(null, "Saliendo del Programa");
+                        
+                        break;
+                    default:
+                        System.out.println("Opcion Incorrecta");
+                        break;
+
+                }
+            } while (opcion != 3);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un numero");
         }
     }
+
 
     public static void empleados() {
 
