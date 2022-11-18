@@ -1,0 +1,10 @@
+controlador\exceptions\PreexistingEntityException.class
+controlador\exceptions\NonexistentEntityException.class
+modelo\Empleados_.class
+modelo\Proyectos.class
+com\unju\tpi\poo\cardozofarfantorrez\View\Menu.class
+controlador\exceptions\IllegalOrphanException.class
+controlador\ProyectosJpaController.class
+modelo\Empleados.class
+modelo\Proyectos_.class
+controlador\EmpleadosJpaController.class
