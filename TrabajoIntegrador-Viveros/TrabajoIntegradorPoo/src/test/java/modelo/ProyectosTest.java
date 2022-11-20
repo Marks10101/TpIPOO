@@ -25,9 +25,9 @@ public class ProyectosTest {
     public void testCalcularMontoIndividual() {
         System.out.println("calcularMontoIndividual");
         int integrantes = 4;
-        float monto = 1000;
+        float monto = 20000;
         Proyectos instance = new Proyectos();
-        float expResult = 250;
+        float expResult = 4000;
         float result = instance.calcularMontoIndividual(integrantes, monto);
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
@@ -36,3 +36,4 @@ public class ProyectosTest {
     
     
 }
+
