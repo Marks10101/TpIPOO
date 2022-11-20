@@ -7,6 +7,7 @@ package modelo;
 
 import static com.unju.tpi.poo.viveros.View.Menu.emp;
 import controlador.EmpleadosJpaController;
+import controlador.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
@@ -215,7 +216,8 @@ public class Empleados implements Observer, Serializable {
         if (igual == true) {
             try {
                 emp.destroy(numLegajo);
-            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Empleado Eliminado con Exito");
+            } catch (NonexistentEntityException e) {
                 JOptionPane.showMessageDialog(null, "Error: " + e);
             }
         }
@@ -370,7 +372,7 @@ public class Empleados implements Observer, Serializable {
 
             switch (opcion) {
                 case 1:
-
+                    
                     String nombre = JOptionPane.showInputDialog("Ingrese nuevo Nombre:");
                     empleado.setNombre(nombre);
                     break;
