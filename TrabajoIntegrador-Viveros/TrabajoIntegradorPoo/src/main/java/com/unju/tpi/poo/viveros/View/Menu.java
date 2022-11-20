@@ -90,7 +90,7 @@ public class Menu {
                         + "\n*3. Modificar un Empleado   "
                         + "\n*4. Listar Empleados  "
                         + "\n*5. Empleado de Mayor Edad "
-                        + "\n*6. Empleados con sueldo Basico "
+                        + "\n*6. Listar empleados que superen determinado sueldo Basico "
                         + "\n*7. Buscar Empleado  "
                         + "\n*8. Volver    "
                         + "\n*=============================*"
