@@ -392,6 +392,7 @@ public class Empleados implements Observer, Serializable {
                     int anio = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Fecha de nacimiento:\n Año: "));
                     Date fecha = new Date(anio, mes, dia);
                     empleado.setFechaNacimiento(fecha);
+                    break;
                 default:
                     JOptionPane.showMessageDialog(null,"Opcion Incorrecta");
                     break;
@@ -409,7 +410,11 @@ public class Empleados implements Observer, Serializable {
     }
 
     public void BuscarEmpleado() {
-        int dni = Integer.parseInt(JOptionPane.showInputDialog("Ingrese DNI del empleado que quiere Buscar:"));
+        String [] arreglo = {"DNI","APELLIDO"};
+        int opcion = JOptionPane.showOptionDialog(null, "Seleccione por que Buscar", "Buscar", 0,JOptionPane.INFORMATION_MESSAGE,null,arreglo,"" );
+        if (arreglo[opcion] == "DNI"){
+            
+             int dni = Integer.parseInt(JOptionPane.showInputDialog("Ingrese DNI del empleado que quiere Buscar:"));
         List<Empleados> listaEmpleados = new ArrayList();
         listaEmpleados = emp.findEmpleadosEntities();
 
@@ -439,6 +444,42 @@ public class Empleados implements Observer, Serializable {
         }
         listaemp += "+----------------------------------------------------------------------------------------------------------------------------------------+";
         JOptionPane.showMessageDialog(null, listaemp);
+        }else{
+            if (arreglo[opcion] == "APELLIDO"){
+            
+            String ape =JOptionPane.showInputDialog("Ingrese Apellido del empleado que quiere Buscar:");
+        List<Empleados> listaEmpleados = new ArrayList();
+        listaEmpleados = emp.findEmpleadosEntities();
+
+        String listaemp
+                = ("+----------------------------------------------------------------------------------------------------------------------------------------+\n"
+                + "+                                                              Lista de Empleados                                                                                   +\n"
+                + "+----------------------------------------------------------------------------------------------------------------------------------------+\n"
+                + "| N° Legajo |     Apellido    |             Nombre          |             DNI          |       FecNacimiento        |      sueldo     |\n"
+                + "+----------------------------------------------------------------------------------------------------------------------------------------+\n");
+        
+         for (Empleados e : listaEmpleados) {
+          
+            if (ape == null ? e.getApellido() == null : ape.equals(e.getApellido())) {
+                int dia =e.getFechaNacimiento().getDate();
+                int mes = e.getFechaNacimiento().getMonth();
+                int anio = e.getFechaNacimiento().getYear();
+                
+                String fecha = dia + "-" + mes + "-" + anio;
+                 
+                    listaemp += "            " + e.getNroLegajo() + "             " + "|"
+                            + e.getApellido() + "                  " + "|"
+                            + e.getNombre() + "                  " + "|"
+                            + e.getDni() + "                  " + "|"
+                            + fecha + "                  " + "|"
+                            + e.getSueldoBasico() + "\n";
+            }
+        }
+        listaemp += "+----------------------------------------------------------------------------------------------------------------------------------------+";
+        JOptionPane.showMessageDialog(null, listaemp);
+        }
+        }
+       
     }
 
     public void EmpleadosdeProyecto(List lista) {
