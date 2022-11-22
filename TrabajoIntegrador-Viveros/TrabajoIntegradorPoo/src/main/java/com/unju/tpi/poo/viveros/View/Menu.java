@@ -164,7 +164,7 @@ public class Menu {
 
             } while (opcion != 8);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un numero");
+            JOptionPane.showMessageDialog(null, "Debe ingresar un numero" + e);
         }
     }
 

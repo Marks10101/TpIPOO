@@ -10,10 +10,12 @@ import controlador.EmpleadosJpaController;
 import controlador.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.time.LocalDate;
+import static java.time.LocalDate.now;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -28,6 +30,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.swing.JOptionPane;
+import org.joda.time.Years;
 
 /**
  *
@@ -216,13 +219,13 @@ public class Empleados implements Observer, Serializable {
             try {
                 emp.destroy(numLegajo);
                 JOptionPane.showMessageDialog(null, "Empleado Eliminado con Exito");
-            } catch (NonexistentEntityException e) {
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error: " + e);
             }
         }
     }
 
-    public int calcularEdad(Date fechaNac) {
+    public int calcularEdad(Date fechaNac ) {
         int dia = fechaNac.getDate();
         int mes = fechaNac.getMonth();
         int anio = fechaNac.getYear();
@@ -236,11 +239,35 @@ public class Empleados implements Observer, Serializable {
         EmpleadosJpaController emp = new EmpleadosJpaController();
         List<Empleados> listaEmpleados = new ArrayList();
         listaEmpleados = emp.findEmpleadosEntities();
+         Empleados empleado = new Empleados();
+        int edad=0;
+        String listaemp
+                = ("+-------------------------------------------------------------+\n"
+                + "+                        Lista de Empleados                    +\n"
+                + "+---------------------------------------------------------------+\n"
+                + "|    Edad    |      Apellido    |             Nombre           |\n"
+                + "+--------------------------------------------------------------+\n");
+        for (Empleados e : listaEmpleados) {
+            edad = calcularEdad(e.getFechaNacimiento());
+            empleado = e;
+            
+            
+            listaemp += "            " + empleado.getNroLegajo() +"             " + "|"
+                    + empleado.getApellido() + "                  " + "|"
+                    + empleado.getNombre() + "                  " + "\n";
+
+        }
+        listaemp += "+----------------------------------------------------------------------------------------------------------------------------------------+";
+        JOptionPane.showMessageDialog(null, listaemp );
+        
+        /* EmpleadosJpaController emp = new EmpleadosJpaController();
+        List<Empleados> listaEmpleados = new ArrayList();
+        listaEmpleados = emp.findEmpleadosEntities();
         String listaemp
                 = ("+----------------------------------------------------------------------------------------------------------------------------------------+\n"
                 + "+                                                              Lista de Empleados                                                                                   +\n"
                 + "+----------------------------------------------------------------------------------------------------------------------------------------+\n"
-                + "| N° Legajo |     Apellido    |             Nombre          |             DNI          |       FecNacimiento        |      sueldo     |\n"
+                + "| N° Legajo |     Edad    |      Apellido    |             Nombre          |             DNI          |       FecNacimiento        |      sueldo     |\n"
                 + "+----------------------------------------------------------------------------------------------------------------------------------------+\n");
         for (Empleados e : listaEmpleados) {
             int dia = e.getFechaNacimiento().getDate();
@@ -256,7 +283,8 @@ public class Empleados implements Observer, Serializable {
 
         }
         listaemp += "+----------------------------------------------------------------------------------------------------------------------------------------+";
-        JOptionPane.showMessageDialog(null, listaemp);
+        JOptionPane.showMessageDialog(null, listaemp);*/
+ 
         /*
         String listaemp = ("+--------------------------------------------------------------------------------+\n"
         +"+                                      Lista de Empleados                        +\n"
@@ -402,7 +430,7 @@ public class Empleados implements Observer, Serializable {
                 JOptionPane.showMessageDialog(null, "Error: " + ex);
             }
 
-        } catch (NumberFormatException e) {
+        } catch (InputMismatchException e) {
             opcion = 0;
             JOptionPane.showMessageDialog(null, "Debe ingresar un numero");
         }

@@ -8,7 +8,6 @@ package controlador;
 import controlador.exceptions.NonexistentEntityException;
 import controlador.exceptions.PreexistingEntityException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
