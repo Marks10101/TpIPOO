@@ -19,7 +19,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Scanner;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,7 +49,6 @@ import org.joda.time.Years;
 //Este clase es el observador a la clase Proyectos
 public class Empleados implements Observer, Serializable {
 
-    public static Scanner scanner = new Scanner(System.in);
 
     private static final long serialVersionUID = 1L;
     @Id
